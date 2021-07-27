@@ -12,10 +12,17 @@ import {
   Input,
   Label,
   Table,
-  Container,
   Row,
   Col,
 } from "reactstrap";
+import {
+  Container,
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
+} from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 let bayAg = ["AA", "Aa"];
 let blackBayE = ["EE", "Ee"];
@@ -183,7 +190,6 @@ const IndexPage = () => {
 
   const selectColorHandle = (e, setColor, setHorse) => {
     setColor(e.target.value);
-    setHorse(sample(chooseGenotype(e.target.value)));
   };
 
   const HorseColorSelectForm = ({ name, setColor, color, horse, setHorse }) => (
@@ -191,65 +197,66 @@ const IndexPage = () => {
       <h3> Select {name} </h3>
       <div className="row">
         <div className="col">
-          <FormGroup>
-            <Label for="selectA">Select Color</Label>
-            <Input
-              type="select"
-              name="select"
-              id="selectColor"
+          <FormControl fullWidth={true}>
+            <InputLabel id="color-label">Select Color</InputLabel>
+            <Select
+              labelId="select-color"
+              id="select-color"
               value={color}
-              // defaultValue=""
-              onChange={(e) => selectColorHandle(e, setColor, setHorse)}
+              onChange={(e) => selectColorHandle(e, setColor)}
+              autoWidth={true}
             >
-              <option value="" label="Select a color"></option>
+              <MenuItem value="" disabled>
+                Choose a colour!
+              </MenuItem>
               {baseColorsList.map((color) => (
-                <option value={color} label={color} />
+                <MenuItem
+                  onClick={() => setHorse(sample(chooseGenotype(color)))}
+                  value={color}
+                >
+                  {color}
+                </MenuItem>
               ))}
-            </Input>
-          </FormGroup>
+            </Select>
+          </FormControl>
         </div>
         <div className="col">
-          <FormGroup>
-            <Label for="selectE">Refine Genotype (optional)</Label>
-
-            {color ? (
-              <div>
-                <Input
-                  type="select"
-                  name="select"
-                  id="selectGene"
-                  onChange={(e) => setHorse(JSON.parse(e.target.value))}
+          {color ? (
+            <FormControl fullWidth={true}>
+              <InputLabel id="gene-select-label">Refine Genotype</InputLabel>
+              <Select
+                labelId="select-genes"
+                id="select-genes"
+                value={JSON.stringify(horse)}
+                onChange={(e) => setHorse(JSON.parse(e.target.value))}
+                autoWidth={true}
+              >
+                <MenuItem value="" disabled>
+                  Refine Genotype
+                </MenuItem>
+                <MenuItem
+                  onClick={() => setHorse(sample(chooseGenotype(color)))}
                 >
-                  {chooseGenotype(color).map((item, index) => (
-                    <option
-                      value={JSON.stringify(item)}
-                      label={`${item.Ag.join("")} ${item.Ex.join("")}`}
-                    ></option>
-                  ))}
-                </Input>
-                <Button onClick={() => setHorse(sample(chooseGenotype(color)))}>
-                  Randomize Genotype!
-                </Button>
-              </div>
-            ) : (
-              <p> Choose a color first! </p>
-            )}
-          </FormGroup>
+                  Randomize {color} genotype
+                </MenuItem>
+
+                {chooseGenotype(color).map((item, index) => (
+                  <MenuItem value={JSON.stringify(item)}>
+                    {item.Ag.join("")} {item.Ex.join("")}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          ) : (
+            <Alert severity="info"> Choose a color first!</Alert>
+          )}
         </div>
       </div>
     </Form>
   );
 
-  const displayHorse = (horse) => {
-    const horseObj = Object.create(horse);
-    horseObj.baseColor = assignColor(horse);
-    horseObj.image = getImage(assignColor(horse));
-
-    return horseObj;
-  };
-
   return (
-    <div>
+    <Container>
       <Row>
         <Col>
           <HorseColorSelectForm
@@ -312,7 +319,7 @@ const IndexPage = () => {
           </Table>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 

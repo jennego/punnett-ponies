@@ -5,7 +5,7 @@
 A toy for simple horse colour genetics.
 May be integrated into another use eventually (game?).
 
-It was originally on Gatsby but it really didn't make sense there so now it's on a CRA.
+It was originally on Gatsby but it really didn't make sense there so now it's on CRA (create react app).
 
 TO DO
 
