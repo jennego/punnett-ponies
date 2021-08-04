@@ -5,17 +5,9 @@ import HorseItem from "./components/horseitem";
 import { Combination } from "js-combinatorics/combinatorics.js";
 import combos from "combos";
 import { uniqWith, isEqual, sample } from "lodash";
+import { Form, Table, Row, Col } from "reactstrap";
 import {
   Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Table,
-  Row,
-  Col,
-} from "reactstrap";
-import {
   Container,
   Select,
   InputLabel,
@@ -283,8 +275,14 @@ const IndexPage = () => {
         <Col md={4}>{horse2 && <HorseItem horse={horse2} />}</Col>
       </Row>
 
-      <Button onClick={() => allResults(horse1, horse2)}>Breed One!</Button>
-      <Button color="primary" onClick={() => allResults(horse1, horse2)}>
+      <Button variant="outlined" onClick={() => allResults(horse1, horse2)}>
+        Breed One!
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => allResults(horse1, horse2)}
+      >
         Breed Results
       </Button>
 
