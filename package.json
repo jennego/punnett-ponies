@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^5.0.2",
+    "canvas-confetti": "^1.4.0",
     "combos": "^0.2.0",
     "js-combinatorics": "^1.5.3",
     "react": "^17.0.2",

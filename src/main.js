@@ -15,6 +15,7 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import SimpleDialogDemo from "./components/dialog";
 
 let bayAg = ["AA", "Aa"];
 let blackBayE = ["EE", "Ee"];
@@ -144,9 +145,13 @@ const IndexPage = () => {
       const allResults = combos({
         Ag: agResult,
         Ex: exResult,
-      });
+      }).map((item) => ({
+        ...item,
+        Ag: item.Ag.sort(),
+        Ex: item.Ex.sort(),
+      }));
 
-      console.log(allResults);
+      console.log("all results", allResults);
       setBreedResults(noDupeResultsWithColor);
 
       // spilt arrays for table
@@ -285,6 +290,7 @@ const IndexPage = () => {
       >
         Breed Results
       </Button>
+      <SimpleDialogDemo />
 
       {tableRows && (
         <div>
