@@ -28,7 +28,9 @@ export default function InfoBox() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open Popover</Button>
+      <Button onClick={handleClick} onMouseOverCapture={handleClick}>
+        Open Popover
+      </Button>
       <Popover
         id={id}
         open={open}
@@ -44,6 +46,7 @@ export default function InfoBox() {
         }}
         style={{ width: "300px" }}
       >
+        <div onClick={handleClose}>CLOSE</div>
         <Typography variant="h5" component="h2">
           Agouti (AA / aa /Aa)
         </Typography>
