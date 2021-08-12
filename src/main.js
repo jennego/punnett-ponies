@@ -15,7 +15,8 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import SimpleDialogDemo from "./components/dialog";
+import SimpleDialog from "./components/dialog";
+import confetti from "canvas-confetti";
 
 let bayAg = ["AA", "Aa"];
 let blackBayE = ["EE", "Ee"];
@@ -84,7 +85,7 @@ const getImage = (color) => {
 const IndexPage = () => {
   const [breedResults, setBreedResults] = useState();
   const [allResultsArr, setAllResultsArr] = useState();
-  const [currentFoal, setCurrentFoal] = useState();
+  const [currentFoal, setCurrentFoal] = useState("hi");
 
   const [agResult, setAgResult] = useState([]);
   const [exResult, setExResult] = useState([]);
@@ -96,6 +97,25 @@ const IndexPage = () => {
   const [horse1, setHorse1] = useState();
 
   const [horse2, setHorse2] = useState();
+
+  const [breedDialogOpen, setBreedDialogOpen] = useState(false);
+
+  const handleBreedOpen = (horse1, horse2) => {
+    const result = allResults(horse1, horse2);
+    let foal = sample(result.allResultsArr);
+    let foalColor = assignColor(foal);
+    let foalImage = getImage(foalColor);
+    foal.image = foalImage;
+    foal.baseColor = foalColor;
+
+    setCurrentFoal(foal);
+    setBreedDialogOpen(true);
+    confetti();
+  };
+
+  const handleBreedClose = (value) => {
+    setBreedDialogOpen(false);
+  };
 
   const allResults = (horse1, horse2) => {
     if (horse1 === undefined || horse2 === undefined) {
@@ -175,12 +195,6 @@ const IndexPage = () => {
         allResultsArr: allBreedResults,
       };
     }
-  };
-
-  const breedOneHorse = (horse1, horse2) => {
-    const result = allResults(horse1, horse2);
-    setCurrentFoal(sample(result.allResultsArr));
-    // it works but need to add image
   };
 
   const chooseGenotype = (color) => {
@@ -303,17 +317,21 @@ const IndexPage = () => {
       >
         Breed Results
       </Button>
+
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
-        onClick={() => breedOneHorse(horse1, horse2)}
+        onClick={() => handleBreedOpen(horse1, horse2)}
       >
         Breed One
       </Button>
-      <SimpleDialogDemo
-        breed={() => breedOneHorse(horse1, horse2)}
+      <SimpleDialog
+        open={breedDialogOpen}
+        onClose={handleBreedClose}
         foal={currentFoal}
       />
+
+      {console.log("current foal", currentFoal)}
 
       {tableRows && (
         <div>

@@ -5,10 +5,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import confetti from "canvas-confetti";
+import HorseItem from "./horseitem";
 
-const SimpleDialog = (props, { foal }) => {
-  const { onClose, selectedValue, open } = props;
+const SimpleDialog = (props) => {
+  const { onClose, selectedValue, open, foal } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -24,6 +24,7 @@ const SimpleDialog = (props, { foal }) => {
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
           <h1>Hello!</h1>
+          {console.log("dialog foal", foal)}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -38,24 +39,4 @@ const SimpleDialog = (props, { foal }) => {
   );
 };
 
-export default function SimpleDialogDemo({ breed, foal }, props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-    confetti();
-  };
-
-  const handleClose = (value) => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Breed One
-      </Button>
-      <SimpleDialog open={open} onClose={handleClose} />
-    </div>
-  );
-}
+export default SimpleDialog;
