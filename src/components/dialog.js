@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import confetti from "canvas-confetti";
 
-function SimpleDialog(props) {
+const SimpleDialog = (props, { foal }) => {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
@@ -36,9 +36,9 @@ function SimpleDialog(props) {
       </DialogActions>
     </Dialog>
   );
-}
+};
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo({ breed, foal }, props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -53,7 +53,7 @@ export default function SimpleDialogDemo() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open simple dialog
+        Breed One
       </Button>
       <SimpleDialog open={open} onClose={handleClose} />
     </div>

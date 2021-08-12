@@ -83,15 +83,15 @@ const getImage = (color) => {
 
 const IndexPage = () => {
   const [breedResults, setBreedResults] = useState();
+  const [allResultsArr, setAllResultsArr] = useState();
+  const [currentFoal, setCurrentFoal] = useState();
+
   const [agResult, setAgResult] = useState([]);
   const [exResult, setExResult] = useState([]);
   const [tableRows, setTableRows] = useState([]);
 
   const [colorHorse1, setColorHorse1] = useState();
   const [colorHorse2, setColorHorse2] = useState();
-
-  const [geneList1, setGeneList1] = useState();
-  const [geneList2, setGeneList2] = useState();
 
   const [horse1, setHorse1] = useState();
 
@@ -142,7 +142,7 @@ const IndexPage = () => {
 
       console.log(noDupeResultsWithColor);
 
-      const allResults = combos({
+      const allBreedResults = combos({
         Ag: agResult,
         Ex: exResult,
       }).map((item) => ({
@@ -151,7 +151,8 @@ const IndexPage = () => {
         Ex: item.Ex.sort(),
       }));
 
-      console.log("all results", allResults);
+      console.log("all results", allBreedResults);
+      setAllResultsArr(allBreedResults);
       setBreedResults(noDupeResultsWithColor);
 
       // spilt arrays for table
@@ -167,7 +168,19 @@ const IndexPage = () => {
 
       console.log("split array", splitArr);
       setTableRows(splitArr);
+
+      return {
+        tableRows: splitArr,
+        breedResults: noDupeResultsWithColor,
+        allResultsArr: allBreedResults,
+      };
     }
+  };
+
+  const breedOneHorse = (horse1, horse2) => {
+    const result = allResults(horse1, horse2);
+    setCurrentFoal(sample(result.allResultsArr));
+    // it works but need to add image
   };
 
   const chooseGenotype = (color) => {
@@ -280,9 +293,9 @@ const IndexPage = () => {
         <Col md={4}>{horse2 && <HorseItem horse={horse2} />}</Col>
       </Row>
 
-      <Button variant="outlined" onClick={() => allResults(horse1, horse2)}>
+      {/* <Button variant="outlined" onClick={() => allResults(horse1, horse2)}>
         Breed One!
-      </Button>
+      </Button> */}
       <Button
         variant="contained"
         color="primary"
@@ -290,7 +303,17 @@ const IndexPage = () => {
       >
         Breed Results
       </Button>
-      <SimpleDialogDemo />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => breedOneHorse(horse1, horse2)}
+      >
+        Breed One
+      </Button>
+      <SimpleDialogDemo
+        breed={() => breedOneHorse(horse1, horse2)}
+        foal={currentFoal}
+      />
 
       {tableRows && (
         <div>
