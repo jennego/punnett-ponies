@@ -9,30 +9,31 @@ It was originally on Gatsby but it really didn't make sense there so now it's on
 
 TO DO
 
-- material ui
-- fix selects (value etc)
-- style it a bit better
-- add breed one
-- start info boxes
-- start gene turn on/off page
-- figure out percentage! - then figure out to use it in data visualization lib!
+- create and style info box component
+- separate logic into other files and make more reusable
+  - use class methods to allow for chaining?
+  - separate split array (for table)?
+- figure out percentage!
+  - display percentage in table
+  - figure out to use it in data visualization lib!
+- start other pages
+  - turn on/off genes to see colour
+  - info page
 
 ### Phase 1:
 
 BASE COATS ONLY Genes: Agouti, Red/Black Factor or Extension (Aa, Ee) Covers colors: Bay, Red, Black Generated genetics of each colour is random Select or edit genetic alleles of horses Add info pages Add hover/click quick info
 
-Find a way to add percentages (maybe not add it yet but look into it and play with it)
-
 ### Phase 2:
 
 Add Roan, Grey
 Add Cream, Dun
-Add compare any 2 modifiers
 Graphics - basic animations?
 Add percentages
 
 ### Phase 3:
 
+Add compare any 2 modifiers
 Add other dilutions
 Add basic patterns
 Improve graphics/animations
