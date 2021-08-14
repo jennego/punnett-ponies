@@ -22,9 +22,12 @@ const SimpleDialog = (props) => {
       BackdropProps={{ style: { backgroundColor: "transparent" } }}
     >
       <DialogContent>
+        <DialogTitle>
+          <h3>🎉 Congrats! You got... </h3>
+        </DialogTitle>
         <DialogContentText id="alert-dialog-slide-description">
-          <h1>Hello!</h1>
           {console.log("dialog foal", foal)}
+          <HorseItem horse={foal} />
         </DialogContentText>
       </DialogContent>
       <DialogActions>
