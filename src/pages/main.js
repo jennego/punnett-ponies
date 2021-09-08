@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import HorseItem from "./components/horseitem";
+import HorseItem from "../components/horseitem";
 
+import SimpleDialog from "../components/dialog";
 import { Combination } from "js-combinatorics/combinatorics.js";
 import combos from "combos";
 import { uniqWith, isEqual, sample } from "lodash";
@@ -15,7 +16,6 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import SimpleDialog from "./components/dialog";
 import confetti from "canvas-confetti";
 
 let bayAg = ["AA", "Aa"];
@@ -125,8 +125,9 @@ const IndexPage = () => {
       let agTraits = horse1.Ag.join("") + horse2.Ag.join("");
       console.log(agTraits);
       let agCombo = new Combination(agTraits, 2);
-      let agResult = [...agCombo];
-      agResult.map((ag) => ag.sort());
+      let ag = [...agCombo];
+      let agArr = ag.map((ag) => ag.sort());
+      const agResult = agArr.sort();
       setAgResult(uniqWith(agResult, isEqual));
       console.log("uniq ag", uniqWith(agResult, isEqual));
       console.log("ag", agResult);
@@ -134,14 +135,13 @@ const IndexPage = () => {
       // red or black
       let exTraits = horse1.Ex.join("") + horse2.Ex.join("");
       let exCombo = new Combination(exTraits, 2);
-      let exResult = [...exCombo];
-      exResult.map((ex) => ex.sort());
+      let ex = [...exCombo];
+      let exArr = ex.map((ex) => ex.sort());
+      const exResult = exArr.sort();
       setExResult(uniqWith(exResult, isEqual));
       console.log("ex", exResult);
 
       // combine all
-
-      console.log("unique", uniqWith(agResult, isEqual));
 
       const uniqueTraitCombos = combos({
         Ag: uniqWith(agResult, isEqual),
@@ -153,6 +153,7 @@ const IndexPage = () => {
       }));
 
       const noDupeResults = uniqWith(uniqueTraitCombos, isEqual);
+      console.log("no dupes", noDupeResults);
 
       let noDupeResultsWithColor = noDupeResults.map((horse) => ({
         ...horse,
@@ -160,7 +161,7 @@ const IndexPage = () => {
         image: getImage(assignColor(horse)),
       }));
 
-      console.log(noDupeResultsWithColor);
+      console.log("no dupe with color", noDupeResultsWithColor);
 
       const allBreedResults = combos({
         Ag: agResult,
@@ -280,7 +281,7 @@ const IndexPage = () => {
   );
 
   return (
-    <Container>
+    <Container style={{ marginTop: "1rem" }}>
       <Row>
         <Col>
           <HorseColorSelectForm
