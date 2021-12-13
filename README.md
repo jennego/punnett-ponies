@@ -19,6 +19,7 @@ TO DO
 - start other pages
   - turn on/off genes to see colour
   - info page
+- upgrade to MUI v5
 
 ### Phase 1:
 
