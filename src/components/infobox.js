@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import makeStyles from '@mui/styles/makeStyles';
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 const useStyles = makeStyles((theme) => ({
   typography: {
     padding: theme.spacing(2),

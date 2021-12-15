@@ -14,8 +14,8 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
-} from "@material-ui/core";
-import { Alert, AlertTitle } from "@material-ui/lab";
+} from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 import confetti from "canvas-confetti";
 
 let bayAg = ["AA", "Aa"];
@@ -226,6 +226,7 @@ const IndexPage = () => {
             <InputLabel id="color-label">Select Color</InputLabel>
             <Select
               labelId="select-color"
+              variant="standard"
               id="select-color"
               value={color}
               onChange={(e) => selectColorHandle(e, setColor)}
@@ -250,6 +251,7 @@ const IndexPage = () => {
             <FormControl fullWidth={true}>
               <InputLabel id="gene-select-label">Refine Genotype</InputLabel>
               <Select
+                variant="standard"
                 labelId="select-genes"
                 id="select-genes"
                 value={JSON.stringify(horse)}

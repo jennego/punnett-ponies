@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button, Container, Paper, Switch } from "@material-ui/core";
+import { Grid, Button, Container, Paper, Switch } from "@mui/material";
 import InfoBox from "../components/infobox";
 
 const Playground = () => {

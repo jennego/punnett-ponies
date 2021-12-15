@@ -1,10 +1,10 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const Header = () => (
   <AppBar position="static" style={{ background: "rebeccapurple" }}>
