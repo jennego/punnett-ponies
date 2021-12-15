@@ -14,7 +14,7 @@ const Playground = () => {
             <Grid component="label" container alignItems="center" spacing={1}>
               <Grid item>a</Grid>
               <Grid item>
-                <Switch />
+                <Switch className="custom-track" />
               </Grid>
               <Grid item>A</Grid>
             </Grid>
