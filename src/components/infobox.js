@@ -1,17 +1,10 @@
 import React from "react";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-const useStyles = makeStyles((theme) => ({
-  typography: {
-    padding: theme.spacing(2),
-  },
-  width: "500px",
-}));
 
 export default function InfoBox() {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -57,7 +50,7 @@ export default function InfoBox() {
           <Typography variant="h5" component="h2">
             Agouti (AA / aa /Aa)
           </Typography>
-          <Typography className={classes.typography}>
+          <Typography>
             Agouti affects black only. If dominant (AA, Aa), it restricts the
             black to points (bay) and if rescessive (aa), the horse will have a
             black base, assuming a black/bay base (EE or Ee). It has no effect
