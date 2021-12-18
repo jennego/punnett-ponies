@@ -20,6 +20,7 @@ TO DO
   - turn on/off genes to see colour
   - info page
 - upgrade to MUI v5
+- Possibly swap to Vite
 
 ### Phase 1:
 
