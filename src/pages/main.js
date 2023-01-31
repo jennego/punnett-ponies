@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import HorseItem from "../components/horseitem";
 
 import SimpleDialog from "../components/dialog";
-import { Combination } from "js-combinatorics/combinatorics.js";
+import { Combination } from "js-combinatorics";
 import combos from "combos";
 import { uniqWith, isEqual, sample } from "lodash";
 import { Form, Table, Row, Col } from "reactstrap";

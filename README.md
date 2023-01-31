@@ -30,7 +30,7 @@ BASE COATS ONLY Genes: Agouti, Red/Black Factor or Extension (Aa, Ee) Covers col
 
 Add Roan, Grey
 Add Cream, Dun
-Graphics - basic animations?
+Graphics - basic animations? Custom graphics.
 Add percentages
 
 ### Phase 3:
