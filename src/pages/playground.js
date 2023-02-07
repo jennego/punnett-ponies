@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Button, Container, Paper, Switch } from "@mui/material";
 import InfoBox from "../components/infobox";
 import { styled } from "@mui/material/styles";
+import ToggleButton from "@mui/material/ToggleButton";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase": {
@@ -28,6 +29,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Playground = () => {
+  const [setPlaygroundValues, playgroundValues] = useState({});
+
   return (
     <Container>
       <InfoBox />
@@ -38,11 +41,10 @@ const Playground = () => {
           <div>
             Agouti <InfoBox />
             <Grid component="label" container alignItems="center" spacing={1}>
-              <Grid item>a</Grid>
-              <Grid item>
-                <Switch className="custom-track" />
-              </Grid>
-              <Grid item>A</Grid>
+              <ToggleButton color="primary" value="a1">
+                A
+              </ToggleButton>
+              <ToggleButton value="a2">A</ToggleButton>
             </Grid>
           </div>
         </Grid>
